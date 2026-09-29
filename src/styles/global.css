@@ -172,10 +172,10 @@ p { text-wrap: pretty; }
 
 .seq-on .seq-progress {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
-  position: absolute; left: 50%; top: calc(72px + clamp(20px, 3.5vh, 36px)); translate: -50% 0; z-index: 3;
+  position: absolute; left: 50%; bottom: clamp(24px, 4vh, 44px); translate: -50% 0;
   width: min(100% - 2 * var(--gutter), var(--wrap));
 }
-.seq-progress li { display: grid; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); text-shadow: 0 1px 8px rgba(10, 16, 32, 0.8); }
+.seq-progress li { display: grid; gap: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim); }
 .seq-progress i { display: block; height: 2px; background: var(--line-dark); position: relative; overflow: hidden; border-radius: 2px; }
 .seq-progress i::after { content: ""; position: absolute; inset: 0; background: var(--green); transform-origin: left; transform: scaleX(var(--p, 0)); }
 .seq-progress li:nth-child(1) i::after { --p: var(--p1); }
@@ -186,17 +186,17 @@ p { text-wrap: pretty; }
 @media (max-width: 767px) {
   .seq-media,
   .chapter-poster {
-    top: 108px; height: auto; width: 100%;
+    top: 88px; height: auto; width: 100%;
     -webkit-mask-image: linear-gradient(0deg, transparent 0%, #000 14%);
     mask-image: linear-gradient(0deg, transparent 0%, #000 14%);
   }
   .seq-shade { display: none; }
-  .chapter { min-height: 0; align-items: start; padding: calc(108px + 56.25vw + 8px) 0 64px; }
+  .chapter { min-height: 0; align-items: start; padding: calc(88px + 56.25vw + 8px) 0 64px; }
   .chapter-text > * { max-width: none; }
   .chapter h1, .chapter-title { font-size: clamp(2rem, 9vw, 2.6rem); }
   .seq-on .seq { height: 300svh; }
-  .seq-on .chapter { padding: calc(108px + 56.25vw + 8px) 0 0; }
-  .seq-on .seq-progress { top: 88px; }
+  .seq-on .chapter { padding: calc(88px + 56.25vw + 8px) 0 0; }
+  .seq-on .seq-progress { bottom: 20px; }
   .seq-progress span { display: none; }
 }
 
