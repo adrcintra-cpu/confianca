@@ -1,0 +1,482 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+// TODO (cliente): preencher contatos reais antes de publicar.
+// Enquanto vazios, os botões apontam para o bloco de contato.
+---
+
+<Layout
+  title="Confiança Crédito e Garantias — Seguro fiança e recebíveis sem burocracia"
+  description="Seguro fiança, compra e antecipação de recebíveis para inquilinos, proprietários, imobiliárias, escolas e condomínios. Contratação 100% online, com análise em minutos."
+>
+  <!-- Grafismo topográfico (definido uma vez, reutilizado) -->
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <symbol id="mk" viewBox="0 0 1561 1526"><path vector-effect="non-scaling-stroke" d="M884.3,0L0,763.4v153.5h331.2c53.1,0,96.1-43,96.1-96.1v-315.2c0-53.1,43-96.1,96.1-96.1h517.9c61.1,0,119.7-23.7,163.7-66.1L1560.9,0h-676.6Z" /><path vector-effect="non-scaling-stroke" d="M884.3,608.2L0,1371.6v153.5h331.2c53.1,0,96.1-43,96.1-96.1v-315.2c0-53.1,43-96.1,96.1-96.1h517.9c61.1,0,119.7-23.7,163.7-66.1l355.9-343.4h-676.6Z" /></symbol>
+    <symbol id="mk-a" viewBox="0 0 1561 918"><path vector-effect="non-scaling-stroke" d="M884.3,0L0,763.4v153.5h331.2c53.1,0,96.1-43,96.1-96.1v-315.2c0-53.1,43-96.1,96.1-96.1h517.9c61.1,0,119.7-23.7,163.7-66.1L1560.9,0h-676.6Z" /></symbol>
+    <symbol id="mk-b" viewBox="0 608 1561 918"><path vector-effect="non-scaling-stroke" d="M884.3,608.2L0,1371.6v153.5h331.2c53.1,0,96.1-43,96.1-96.1v-315.2c0-53.1,43-96.1,96.1-96.1h517.9c61.1,0,119.7-23.7,163.7-66.1l355.9-343.4h-676.6Z" /></symbol>
+  </svg>
+
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <!-- Botão flutuante de WhatsApp (acompanha a rolagem).
+       TODO (cliente): incluir o número após "wa.me/", ex.: https://wa.me/5562999999999?text=...
+       Ícone do WhatsApp fornecido pelo cliente (icon-whatsapp.svg). -->
+  <a class="float-cta" href="https://wa.me/?text=Ol%C3%A1!%20Quero%20falar%20com%20a%20Confian%C3%A7a." target="_blank" rel="noopener" aria-label="Falar com a Confiança no WhatsApp (abre em nova aba)">
+    <svg viewBox="0 0 500.9 512.9" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M139.2,462.1l-126.1,33,33.7-123.1C-3.7,284.6,7.3,175.5,71.6,99.8,150.4,6.9,286.7-11,386.1,57c120.4,82.4,139.5,252.3,39.2,359-72.6,77.8-190.4,98.2-286.2,46.1ZM145.1,418.9c83.2,54,192.4,37.6,256.3-36.2,80.3-92.7,58-234.4-46.8-298.2-79.2-48.2-182-33.9-245.6,33.7-63.5,67.5-71.8,170.5-18.7,247.4l-19.7,72.7,74.6-19.4Z"/><path fill="currentColor" d="M319.1,283.2c17.4,7.4,33.5,15.7,50.1,24,7.6,3.8,2.6,27.5-3.1,35.8-7.7,11.1-20.2,18.5-33.2,22.3s-24.9,3.1-36.8,0-31.3-10.1-46.4-17.4c-41.9-20.4-79.8-61.9-103.7-101.6-18.8-31.1-20.4-67.2,5.5-94,5.7-5.9,12.1-9.5,20.9-8.6,7.9.8,15.5-2.4,19.9,8.2l19.4,46.2c2,4.8,1.9,9-1.1,13.2-4.8,6.7-9.8,13.4-15.1,19.7s-2.2,7.4.1,11.3c18.7,31.7,46.1,56,80.5,69.3,3.2,1.2,7.2,3.1,10.1.1,7.9-8.1,14.8-17,21.6-26.2,2.6-3.5,6.7-4.3,11.4-2.3Z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <Header />
+
+  <main id="conteudo">
+    <!-- HERO: três imagens que se sucedem com o scroll (antecipação, fiança, escolas) -->
+    <section class="seq" id="topo" aria-labelledby="hero-title">
+      <div class="seq-stage">
+        <div class="seq-shade seq-shade-live" aria-hidden="true"></div>
+
+        <article class="chapter is-active" data-chapter="0">
+          <picture class="chapter-poster">
+            <img src="/img/hero-1-1920.avif" srcset="/img/hero-1-1280.avif 1280w, /img/hero-1-1920.avif 1920w" sizes="(max-width: 767px) 100vw, 178vh" alt="Mulher sorridente em uma praça urbana segurando o símbolo da Confiança" width="1920" height="1080" fetchpriority="high" />
+          </picture>
+          <div class="seq-shade" aria-hidden="true"></div>
+          <div class="wrap chapter-text">
+            <p class="eyebrow">Antecipação de recebíveis</p>
+            <h1 id="hero-title">Receba hoje o que só entraria amanhã.</h1>
+            <p class="lead">Proprietários, escolas e condomínios parceiros antecipam valores a receber, com taxas competitivas e liberação em poucos dias.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#contato">Solicitar análise</a>
+              <a class="btn btn-ghost" href="#solucoes">Conhecer as soluções</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="chapter" data-chapter="1">
+          <picture class="chapter-poster">
+            <img src="/img/hero-2-1920.avif" srcset="/img/hero-2-1280.avif 1280w, /img/hero-2-1920.avif 1920w" sizes="(max-width: 767px) 100vw, 178vh" alt="Executivo sorridente em um escritório segurando o símbolo da Confiança" width="1920" height="1080" decoding="async" />
+          </picture>
+          <div class="seq-shade" aria-hidden="true"></div>
+          <div class="wrap chapter-text">
+            <p class="eyebrow">Seguro fiança</p>
+            <h2 class="chapter-title">Aluguel garantido, sem fiador.</h2>
+            <p class="lead">Contratação 100% online, análise de crédito em minutos e cashback para o inquilino. O proprietário continua recebendo.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#contato">Solicitar análise</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="chapter" data-chapter="2">
+          <picture class="chapter-poster">
+            <img src="/img/hero-3-1920.avif" srcset="/img/hero-3-1280.avif 1280w, /img/hero-3-1920.avif 1920w" sizes="(max-width: 767px) 100vw, 178vh" alt="Professora sorridente em sala de aula segurando o símbolo da Confiança" width="1920" height="1080" decoding="async" />
+          </picture>
+          <div class="seq-shade" aria-hidden="true"></div>
+          <div class="wrap chapter-text">
+            <p class="eyebrow">Recebíveis de escolas</p>
+            <h2 class="chapter-title">Mensalidades em dia, todo mês.</h2>
+            <p class="lead">Compramos a carteira de mensalidades e a escola recebe nas datas combinadas, com a folha de pagamento garantida.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#contato">Solicitar análise</a>
+            </div>
+          </div>
+        </article>
+
+        <ol class="seq-progress" aria-hidden="true">
+          <li><span>Antecipação</span><i></i></li>
+          <li><span>Seguro fiança</span><i></i></li>
+          <li><span>Escolas</span><i></i></li>
+        </ol>
+      </div>
+    </section>
+
+    <script is:inline>
+      // Scroll → capítulo. Menos de 1 KB, sem dependências. Sem JS ou com "reduzir movimento",
+      // os três capítulos aparecem empilhados, cada um com sua imagem.
+      (() => {
+        const sec = document.querySelector(".seq");
+        if (!sec || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const chapters = [...sec.querySelectorAll(".chapter")];
+        let ticking = false;
+        document.documentElement.classList.add("seq-on");
+        const update = () => {
+          ticking = false;
+          const r = sec.getBoundingClientRect();
+          const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+          const k = Math.min(2, Math.floor(p * 3)); // cada imagem ocupa 1/3 do scroll
+          sec.style.setProperty("--p1", Math.min(1, p * 3));
+          sec.style.setProperty("--p2", Math.min(1, Math.max(0, p * 3 - 1)));
+          sec.style.setProperty("--p3", Math.min(1, Math.max(0, p * 3 - 2)));
+          sec.style.setProperty("--local", Math.min(1, p * 3 - k)); // progresso dentro da imagem atual
+          chapters.forEach((c, n) => c.classList.toggle("is-active", n === k));
+        };
+        addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+        addEventListener("resize", update);
+        update();
+      })();
+    </script>
+
+    <!-- PROPÓSITO: cards animados sobre os símbolos de vidro -->
+    <section class="story" id="historia" aria-labelledby="story-title">
+      <div class="story-stage">
+        <div class="story-field" aria-hidden="true">
+          <span class="fx" style="--x:30%;--y:44%;--s:9vmin;--dx:14vmin;--dy:-12vmin;--o:0.81"><i class="glass g-mk"></i><svg><use href="#mk" /></svg></span>
+          <span class="fx" style="--x:74%;--y:58%;--s:10vmin;--dx:34vmin;--dy:-30vmin;--o:0.54"><i class="glass g-mk-a"></i><svg><use href="#mk-a" /></svg></span>
+          <span class="fx" style="--x:58%;--y:34%;--s:12vmin;--dx:-30vmin;--dy:26vmin;--o:0.54"><i class="glass g-mk-b"></i><svg><use href="#mk-b" /></svg></span>
+          <span class="fx" style="--x:36%;--y:62%;--s:14vmin;--dx:-12vmin;--dy:10vmin;--o:0.63"><i class="glass g-mk-b"></i><svg><use href="#mk-b" /></svg></span>
+          <span class="fx" style="--x:78%;--y:10%;--s:16vmin;--dx:10vmin;--dy:-9vmin;--o:0.9"><i class="glass g-mk"></i><svg><use href="#mk" /></svg></span>
+          <span class="fx" style="--x:10%;--y:70%;--s:18vmin;--dx:26vmin;--dy:-22vmin;--o:0.63"><i class="glass g-mk-a"></i><svg><use href="#mk-a" /></svg></span>
+          <span class="fx" style="--x:4%;--y:8%;--s:30vmin;--dx:18vmin;--dy:-16vmin;--o:0.81"><i class="glass g-mk-a"></i><svg><use href="#mk-a" /></svg></span>
+          <span class="fx" style="--x:70%;--y:66%;--s:34vmin;--dx:-22vmin;--dy:19vmin;--o:0.72"><i class="glass g-mk-b"></i><svg><use href="#mk-b" /></svg></span>
+        </div>
+        <div class="story-mark">
+          <i class="glass g-mk"></i>
+          <svg class="story-topo" viewBox="0 0 1561 1526" aria-hidden="true">
+            <path pathLength="1" d="M884.3,608.2L0,1371.6v153.5h331.2c53.1,0,96.1-43,96.1-96.1v-315.2c0-53.1,43-96.1,96.1-96.1h517.9c61.1,0,119.7-23.7,163.7-66.1l355.9-343.4h-676.6Z" />
+            <path pathLength="1" d="M884.3,0L0,763.4v153.5h331.2c53.1,0,96.1-43,96.1-96.1v-315.2c0-53.1,43-96.1,96.1-96.1h517.9c61.1,0,119.7-23.7,163.7-66.1L1560.9,0h-676.6Z" />
+          </svg>
+        </div>
+        <div class="wrap story-content">
+          <header class="section-head story-head reveal">
+            <p class="index">Nosso propósito</p>
+            <h2 id="story-title">Cada lado do contrato quer uma coisa.</h2>
+          </header>
+          <div class="pc-glows" aria-hidden="true"><i class="gl g1"></i><i class="gl g2"></i><i class="gl g3"></i></div>
+          <ol class="pcards">
+            <li class="pcard" style="--i:0">
+              <div class="pc-inner">
+                <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path fill="currentColor" d="M6.126 12.874q-.357-.357-.357-.874t.357-.874t.874-.357t.874.357t.357.874t-.357.874t-.874.357t-.874-.357M7 17q-2.077 0-3.538-1.461T2 12t1.462-3.538T7 7q1.54 0 2.778.835q1.238.834 1.807 2.165h9.204l2 2l-3.193 3.154l-1.712-1.288l-1.807 1.326L14.298 14h-2.713q-.57 1.312-1.807 2.156T7 17m0-1q1.477 0 2.52-.889T10.856 13h3.76l1.43.967l1.858-1.333l1.621 1.222L21.381 12l-1-1h-9.525q-.292-1.223-1.336-2.111T7 8Q5.35 8 4.175 9.175T3 12t1.175 2.825T7 16"/></svg></span>
+                <p class="pc-who">Quem aluga</p>
+                <h3>quer <em>agilidade.</em></h3>
+                <p class="pc-text">Análise online em minutos, sem fiador e com cashback para o inquilino.</p>
+              </div>
+            </li>
+            <li class="pcard" style="--i:1">
+              <div class="pc-inner">
+                <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path fill="currentColor" d="m10.95 17.62l-2.858-2.858l.72-.72l2.138 2.139l4.239-4.239l.719.72zM5.616 21q-.691 0-1.153-.462T4 19.385V6.615q0-.69.463-1.152T5.616 5h1.769V2.77h1.077V5h7.154V2.77h1V5h1.769q.69 0 1.153.463T20 6.616v12.769q0 .69-.462 1.153T18.384 21zm0-1h12.769q.23 0 .423-.192t.192-.424v-8.768H5v8.769q0 .23.192.423t.423.192M5 9.615h14v-3q0-.23-.192-.423T18.384 6H5.616q-.231 0-.424.192T5 6.616zm0 0V6z"/></svg></span>
+                <p class="pc-who">Quem é dono</p>
+                <h3>quer <em>receber em dia.</em></h3>
+                <p class="pc-text">Aluguel garantido, antecipação de valores e assessoria jurídica sem custo em caso de despejo.</p>
+              </div>
+            </li>
+            <li class="pcard" style="--i:2">
+              <div class="pc-inner">
+                <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path fill="currentColor" d="m3 20.5l-.173-.635L4.5 18.213V20.5zm4.5 0v-5.288l1-1V20.5zm4 0v-6.288l1 1.025V20.5zm4 0v-5.263l1-1V20.5zm4 0v-9.288l1-1V20.5zm-16-5.886V13.21l6.5-6.5l4 4l6.5-6.5v1.403l-6.5 6.5l-4-4z"/></svg></span>
+                <p class="pc-who">Quem administra</p>
+                <h3>quer <em>previsibilidade.</em></h3>
+                <p class="pc-text">Imobiliárias, escolas e condomínios com caixa estável e recebimento nas datas combinadas.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="pc-rail" aria-hidden="true"><i></i><b></b><b></b><b></b></div>
+          <p class="story-end">A Confiança garante <em>as três pontas.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUÇÕES (ícones: Material Symbols Light, 36px → linha de 1,5px) -->
+    <section class="section light" id="solucoes" aria-labelledby="solucoes-title">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="index">Soluções</p>
+          <h2 id="solucoes-title">Quatro soluções.<br />Uma mesma garantia.</h2>
+          <p class="section-lead">
+            Tecnologia, agilidade e segurança para eliminar a inadimplência de quem aluga,
+            de quem administra e de quem ensina.
+          </p>
+        </header>
+
+        <div class="cards">
+          <article class="card reveal">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path fill="currentColor" d="M19 14.77v-7l-5.5-3.847L8 7.769v2.692H7V7.29l6.5-4.635L20 7.289v7.48zm-4.904-6.328h.808v-.808h-.808zm-2 0h.808v-.808h-.808zm2 2h.808v-.808h-.808zm-2 0h.808v-.808h-.808zm-5.692 8.212l7.565 2.207l5.989-1.85q-.03-.455-.272-.656q-.244-.201-.551-.201H14.39q-.634 0-1.15-.05t-1.055-.238l-2.19-.718l.338-.988l2.025.732q.482.183 1.096.22q.613.036 1.68.042q0-.468-.172-.756t-.493-.402l-5.754-2.112q-.057-.019-.106-.028t-.105-.01h-2.1zm-4 2.346v-8.154H8.48q.14 0 .288.032t.275.074l5.779 2.117q.537.204.924.733q.388.529.388 1.352h3q.904 0 1.384.565q.481.566.481 1.435v.615l-6.98 2.154l-7.616-2.22V21zm1-1h2v-6.154h-2z"/></svg></span>
+            <h3>Seguro Fiança</h3>
+            <p class="card-tag">Aluguel garantido</p>
+            <p>
+              Substitui o fiador e o caução. Se o inquilino atrasar, o proprietário continua
+              recebendo o aluguel.
+            </p>
+            <ul class="ticks">
+              <li>Contratação 100% online</li>
+              <li>Análise de crédito em minutos</li>
+              <li>Cashback para o inquilino</li>
+              <li>Coberturas combináveis</li>
+            </ul>
+            <p class="card-for"><strong>Para:</strong> inquilinos PF e PJ e imobiliárias</p>
+            <a class="card-cta" href="#contato">Quero o Seguro Fiança<svg class="arr" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.079 12.5H5v-1h12.079l-5.792-5.792L12 5l7 7l-7 7l-.713-.708z"/></svg></a>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path fill="currentColor" d="m12 18.692l-6-3.261v-4.846L3.077 9L12 4.154L20.923 9v6.385h-1V9.562L18 10.585v4.846zm0-5.992L18.83 9L12 5.3L5.17 9zm0 4.852l5-2.7v-3.717l-5 2.708l-5-2.708v3.717zm0-3.487"/></svg></span>
+            <h3>Recebíveis de Escolas</h3>
+            <p class="card-tag">Compra de carteira</p>
+            <p>
+              Adquirimos a carteira de mensalidades e pagamos a escola nas datas combinadas,
+              já considerando o risco de inadimplência.
+            </p>
+            <ul class="ticks">
+              <li>Recebimento nas datas programadas</li>
+              <li>Folha de pagamento em dia</li>
+              <li>Estabilidade para investir</li>
+            </ul>
+            <p class="card-for"><strong>Para:</strong> gestores de instituições de ensino</p>
+            <a class="card-cta" href="#contato">Falar sobre minha escola<svg class="arr" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.079 12.5H5v-1h12.079l-5.792-5.792L12 5l7 7l-7 7l-.713-.708z"/></svg></a>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path fill="currentColor" d="M3.5 20.154v-13h4v-4h9v8h4v9h-7v-4h-3v4zm1-1h3v-3h-3zm0-4h3v-3h-3zm0-4h3v-3h-3zm4 4h3v-3h-3zm0-4h3v-3h-3zm0-4h3v-3h-3zm4 8h3v-3h-3zm0-4h3v-3h-3zm0-4h3v-3h-3zm4 12h3v-3h-3zm0-4h3v-3h-3z"/></svg></span>
+            <h3>Recebíveis de Condomínios</h3>
+            <p class="card-tag">Compra de carteira</p>
+            <p>
+              O condomínio recebe as cotas nas datas planejadas, mesmo quando algum condômino
+              atrasa o pagamento.
+            </p>
+            <ul class="ticks">
+              <li>Caixa previsível todo mês</li>
+              <li>Fornecedores e manutenção em dia</li>
+              <li>Menos desgaste com cobrança</li>
+            </ul>
+            <p class="card-for"><strong>Para:</strong> síndicos e administradoras</p>
+            <a class="card-cta" href="#contato">Falar sobre meu condomínio<svg class="arr" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.079 12.5H5v-1h12.079l-5.792-5.792L12 5l7 7l-7 7l-.713-.708z"/></svg></a>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path fill="currentColor" d="M13.5 12.423q-.846 0-1.423-.577t-.577-1.423T12.077 9t1.423-.577T14.923 9t.577 1.423t-.577 1.423t-1.423.577m-6.192 3.193q-.667 0-1.141-.475q-.475-.475-.475-1.141V6.846q0-.666.475-1.14t1.14-.475h12.385q.667 0 1.141.474t.475 1.141V14q0 .666-.475 1.14q-.474.476-1.14.476zm1-1h10.384q0-.672.475-1.144q.474-.472 1.14-.472V7.846q-.67 0-1.142-.474q-.473-.475-.473-1.141H8.308q0 .671-.475 1.143q-.474.472-1.14.472V13q.67 0 1.143.475q.472.474.472 1.14m10.038 4H4.308q-.667 0-1.141-.474q-.475-.475-.475-1.141V8.192h1V17q0 .23.192.423q.193.193.424.193h14.038zm-11.038-4h-.616V6.232h.616q-.25 0-.433.183t-.183.432V14q0 .25.183.433t.433.183"/></svg></span>
+            <h3>Antecipação de Recebíveis</h3>
+            <p class="card-tag">Capital de giro</p>
+            <p>
+              Proprietários, escolas e condomínios parceiros antecipam valores a receber com
+              taxas competitivas.
+            </p>
+            <ul class="ticks">
+              <li>Solicitação pelo site, app ou telefone</li>
+              <li>Liberação em até 15 dias</li>
+              <li>Para parceiros Confiança</li>
+            </ul>
+            <p class="card-for"><strong>Para:</strong> proprietários, escolas e condomínios</p>
+            <a class="card-cta" href="#contato">Quero antecipar<svg class="arr" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.079 12.5H5v-1h12.079l-5.792-5.792L12 5l7 7l-7 7l-.713-.708z"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- COBERTURAS -->
+    <section class="section dark coverage" aria-labelledby="cobertura-title">
+      <div class="cov-bg" aria-hidden="true">
+        <img src="/img/casa-1920.avif" srcset="/img/casa-1280.avif 1280w, /img/casa-1920.avif 1920w" sizes="100vw" alt="" width="1920" height="1280" loading="lazy" decoding="async" />
+      </div>
+      <div class="wrap coverage-grid">
+        <header class="section-head reveal">
+          <p class="index">Coberturas</p>
+          <h2 id="cobertura-title">Você escolhe até onde a garantia vai.</h2>
+          <p class="section-lead">
+            O Seguro Fiança cobre o aluguel e pode ser ampliado para os custos que mais pesam
+            no fim de um contrato.
+          </p>
+          <p class="fineprint">Modalidades e condições sujeitas à análise de crédito.</p>
+          <div class="actions"><a class="btn btn-primary" href="#contato">Escolher minha cobertura</a></div>
+        </header>
+
+        <ol class="stack" aria-label="Níveis de cobertura">
+          <li class="layer reveal"><span class="layer-n">1</span><span>Aluguel</span></li>
+          <li class="layer reveal"><span class="layer-n">2</span><span>Aluguel <b>+ pintura</b></span></li>
+          <li class="layer reveal"><span class="layer-n">3</span><span>Aluguel + pintura <b>+ condomínio</b></span></li>
+          <li class="layer reveal"><span class="layer-n">4</span><span>Aluguel + pintura + condomínio <b>+ IPTU</b></span></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PÚBLICOS -->
+    <section class="section light" aria-labelledby="publicos-title">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="index">Para quem é</p>
+          <h2 id="publicos-title">Feita para cada lado do contrato.</h2>
+        </header>
+
+        <div class="audiences">
+          <article class="audience reveal">
+            <h3>Inquilinos</h3>
+            <p>Alugue sem fiador, com taxas competitivas, análise rápida e cashback.</p>
+          </article>
+          <article class="audience reveal">
+            <h3>Proprietários</h3>
+            <p>
+              Aluguel garantido, possibilidade de antecipar aluguéis e assessoria jurídica sem
+              custo em caso de despejo.
+            </p>
+          </article>
+          <article class="audience reveal" id="imobiliarias">
+            <h3>Imobiliárias</h3>
+            <p>
+              Feche mais contratos, conte com assessoria jurídica sem custo em despejos e fique
+              com parte do valor de cada seguro fiança.
+            </p>
+          </article>
+          <article class="audience reveal">
+            <h3>Escolas e condomínios</h3>
+            <p>Transforme a carteira de recebíveis em caixa previsível, nas datas que você planejou.</p>
+          </article>
+        </div>
+
+        <div class="partner reveal" aria-labelledby="parceiro-title">
+          <div>
+            <p class="eyebrow dark-text">Programa de parceria</p>
+            <h3 id="parceiro-title" class="words" aria-label="Quanto mais a imobiliária cresce, maior o repasse."><span class="w" style="--i:0"><span>Quanto</span></span> <span class="w" style="--i:1"><span>mais</span></span> <span class="w" style="--i:2"><span>a</span></span> <span class="w" style="--i:3"><span>imobiliária</span></span> <span class="w" style="--i:4"><span>cresce,</span></span> <span class="w" style="--i:5"><span>maior</span></span> <span class="w" style="--i:6"><span>o</span></span> <span class="w" style="--i:7"><span><em class="hl">repasse.</em></span></span></h3>
+            <p class="partner-copy">
+              Imobiliárias parceiras são classificadas em três níveis. Cada nível garante um
+              percentual maior do seguro fiança.
+            </p>
+            <div class="actions"><a class="btn btn-primary" href="#contato">Quero ser parceiro</a></div>
+          </div>
+          <div class="tiers-wrap">
+            <ol class="tiers">
+              <li class="tier bronze"><span>Bronze</span></li>
+              <li class="tier prata"><span>Prata</span></li>
+              <li class="tier ouro"><span>Ouro</span><i class="shine" aria-hidden="true"></i></li>
+            </ol>
+            <!-- surpresa: linha de tendência que se traça sobre o topo das barras -->
+            <svg class="trend" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <polyline pathLength="1" points="16.7,47 50,22 83.3,-8" />
+            </svg>
+            <span class="dot d1" aria-hidden="true"></span>
+            <span class="dot d2" aria-hidden="true"></span>
+            <span class="dot d3" aria-hidden="true"><b></b></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section class="section dark" id="como-funciona" aria-labelledby="como-title">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="index">Como funciona</p>
+          <h2 id="como-title">Do cadastro à garantia, sem sair da tela.</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step-n">01</span>
+            <h3>Cadastro</h3>
+            <p>A imobiliária parceira ou o próprio cliente faz o cadastro online.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-n">02</span>
+            <h3>Análise</h3>
+            <p>A análise de crédito acontece no sistema, em minutos.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-n">03</span>
+            <h3>Contratação</h3>
+            <p>Contrato digital, sem papelada e sem deslocamento.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-n">04</span>
+            <h3>Acompanhamento</h3>
+            <p>Status da solicitação e da garantia disponíveis online. Se precisar, tem gente para atender.</p>
+          </li>
+        </ol>
+        <div class="section-cta reveal">
+          <p>Leva poucos minutos para começar.</p>
+          <a class="btn btn-primary" href="#contato">Começar meu cadastro</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="section light" aria-labelledby="dif-title">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="index">Diferenciais</p>
+          <h2 id="dif-title">Honramos o nosso nome.</h2>
+        </header>
+        <ul class="facts">
+          <li class="fact reveal"><strong>100%</strong><span>online, da análise ao contrato</span></li>
+          <li class="fact reveal"><strong>Minutos</strong><span>para a análise do seguro fiança</span></li>
+          <li class="fact reveal"><strong>Cashback</strong><span>para o inquilino</span></li>
+          <li class="fact reveal"><strong>R$ 0</strong><span>de assessoria jurídica em caso de despejo</span></li>
+        </ul>
+        <div class="section-cta light-cta reveal">
+          <p>Pronto para alugar sem fiador?</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contato">Solicitar análise</a>
+            <a class="btn btn-outline" href="#solucoes">Ver as soluções</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section light faq-section" id="duvidas" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <header class="section-head reveal">
+          <p class="index">Dúvidas</p>
+          <h2 id="faq-title">Dúvidas frequentes</h2>
+          <p class="faq-help">Não encontrou sua dúvida?</p>
+          <a class="card-cta" href="#contato">Fale com a nossa equipe<svg class="arr" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M17.079 12.5H5v-1h12.079l-5.792-5.792L12 5l7 7l-7 7l-.713-.708z"/></svg></a>
+        </header>
+        <div class="faq">
+          <details>
+            <summary>Quem pode contratar?</summary>
+            <p>Pessoas físicas e jurídicas. Todas as soluções passam por análise de crédito.</p>
+          </details>
+          <details>
+            <summary>Preciso de fiador para alugar?</summary>
+            <p>Não. O Seguro Fiança substitui o fiador e o caução.</p>
+          </details>
+          <details>
+            <summary>Como funciona a análise?</summary>
+            <p>Tudo acontece no sistema, 100% online. Você envia os dados, a análise de crédito é feita e o resultado sai em minutos no seguro fiança.</p>
+          </details>
+          <details>
+            <summary>Quanto tempo leva?</summary>
+            <p>A análise do seguro fiança leva minutos. Compra de recebíveis e antecipações são avaliadas caso a caso, com liberação em poucos dias.</p>
+          </details>
+          <details>
+            <summary>Existe valor mínimo ou máximo?</summary>
+            <p>Não há valor mínimo ou máximo pré-definido. O limite depende da análise de crédito.</p>
+          </details>
+          <details>
+            <summary>Como minha imobiliária se torna parceira?</summary>
+            <p>Entre em contato para fazer o cadastro. Imobiliárias parceiras recebem parte do valor de cada seguro fiança, com repasse maior a cada nível do programa.</p>
+          </details>
+          <details>
+            <summary>Onde a Confiança atende?</summary>
+            <p>Temos sedes em Limeira/SP e Goiânia/GO e atendemos todo o Brasil, com foco inicial nessas regiões.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO / CTA -->
+    <section class="cta" id="contato" aria-labelledby="cta-title">
+      <!-- banner em vídeo: símbolos de vidro flutuando (sem áudio, em loop) -->
+      <video class="cta-video" muted loop playsinline preload="none" poster="/video/cta-poster.avif" aria-hidden="true">
+        <source src="/video/cta-av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+        <source src="/video/cta.mp4" type="video/mp4" />
+      </video>
+      <div class="cta-shade" aria-hidden="true"></div>
+      <div class="wrap cta-inner reveal">
+        <h2 id="cta-title">Solicite sua análise.</h2>
+        <p class="lead">Fale com a Confiança e descubra a solução certa para o seu contrato, sua escola ou seu condomínio.</p>
+        <!-- TODO (cliente): substituir pelos contatos reais -->
+        <div class="actions">
+          <a class="btn btn-primary" href="https://wa.me/">Falar no WhatsApp</a>
+          <a class="btn btn-ghost" href="tel:">Ligar</a>
+          <a class="btn btn-ghost" href="mailto:">Enviar e-mail</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script is:inline>
+    // Vídeo do banner "Solicite sua análise": só carrega e toca quando aparece na tela
+    (() => {
+      const v = document.querySelector(".cta-video");
+      if (!v || matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+      new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }, { rootMargin: "200px" }).observe(v);
+    })();
+  </script>
+
+</Layout>

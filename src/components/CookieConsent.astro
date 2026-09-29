@@ -1,0 +1,205 @@
+---
+// Banner + painel de consentimento de cookies (LGPD).
+// Consentimento salvo em localStorage ("confianca-consentimento").
+//
+// COMO ADICIONAR FERRAMENTAS OPCIONAIS (analytics, Google Ads, Meta Pixel etc.):
+// nunca use <script> normal. Declare o script como texto inerte, com a categoria:
+//
+//   <script type="text/plain" data-consent="analytics" data-src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+//   <script type="text/plain" data-consent="analytics">  /* código inline do GA4 */  </script>
+//   <script type="text/plain" data-consent="marketing">  /* Meta Pixel / Google Ads */ </script>
+//
+// Esses scripts só são ativados depois que o visitante consente a categoria correspondente.
+// Também é disparado o evento window "confianca:consentimento" com as escolhas.
+---
+
+<div class="cc-banner" id="cc-banner" role="region" aria-label="Aviso de cookies" aria-describedby="cc-banner-text" hidden>
+  <div class="cc-banner-inner">
+    <div class="cc-banner-copy">
+      <p class="cc-title" id="cc-banner-title">Sua privacidade é importante para nós</p>
+      <p class="cc-text" id="cc-banner-text">
+        Utilizamos cookies essenciais para o funcionamento do site e, com sua autorização, cookies de análise e
+        marketing para entender sua navegação e melhorar sua experiência. Você pode aceitar todos, recusar os
+        opcionais ou escolher suas preferências.
+        <a href="/politica-de-privacidade#cookies">Saiba mais</a>
+      </p>
+    </div>
+    <div class="cc-actions">
+      <button type="button" class="cc-btn cc-btn-primary" data-cc="accept-all">Aceitar todos</button>
+      <button type="button" class="cc-btn cc-btn-ghost" data-cc="reject">Recusar opcionais</button>
+      <button type="button" class="cc-btn cc-btn-link" data-cc="manage" aria-haspopup="dialog">Gerenciar preferências</button>
+    </div>
+  </div>
+</div>
+
+<dialog class="cc-modal" id="cc-modal" aria-labelledby="cc-modal-title" aria-describedby="cc-modal-desc">
+  <form method="dialog" class="cc-modal-inner" id="cc-form">
+    <header class="cc-modal-head">
+      <h2 class="cc-modal-title" id="cc-modal-title">Preferências de cookies</h2>
+      <button type="button" class="cc-close" data-cc="close" aria-label="Fechar preferências de cookies">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6.4 18.3l-.7-.7l5.6-5.6l-5.6-5.6l.7-.7l5.6 5.6l5.6-5.6l.7.7l-5.6 5.6l5.6 5.6l-.7.7l-5.6-5.6z"/></svg>
+      </button>
+    </header>
+    <p class="cc-modal-desc" id="cc-modal-desc">
+      Escolha quais categorias de cookies você autoriza. Você pode alterar essa escolha a qualquer momento pelo
+      link “Preferências de Cookies”, no rodapé do site.
+    </p>
+
+    <ul class="cc-cats">
+      <li class="cc-cat">
+        <div class="cc-cat-text">
+          <p class="cc-cat-name" id="cc-lbl-essential">Cookies essenciais</p>
+          <p class="cc-cat-desc" id="cc-desc-essential">Sempre ativos. Necessários para segurança e funcionamento do site.</p>
+        </div>
+        <span class="cc-always">Sempre ativos</span>
+      </li>
+      <li class="cc-cat">
+        <div class="cc-cat-text">
+          <label class="cc-cat-name" for="cc-analytics" id="cc-lbl-analytics">Análise e desempenho</label>
+          <p class="cc-cat-desc" id="cc-desc-analytics">Permitem entender como os visitantes utilizam o site e ajudam a melhorar sua experiência.</p>
+        </div>
+        <span class="cc-switch">
+          <input type="checkbox" id="cc-analytics" name="analytics" role="switch" aria-describedby="cc-desc-analytics" />
+          <span class="cc-slider" aria-hidden="true"></span>
+        </span>
+      </li>
+      <li class="cc-cat">
+        <div class="cc-cat-text">
+          <label class="cc-cat-name" for="cc-marketing" id="cc-lbl-marketing">Marketing</label>
+          <p class="cc-cat-desc" id="cc-desc-marketing">Utilizados para mensuração de campanhas e personalização de publicidade.</p>
+        </div>
+        <span class="cc-switch">
+          <input type="checkbox" id="cc-marketing" name="marketing" role="switch" aria-describedby="cc-desc-marketing" />
+          <span class="cc-slider" aria-hidden="true"></span>
+        </span>
+      </li>
+    </ul>
+
+    <div class="cc-modal-actions">
+      <button type="button" class="cc-btn cc-btn-ghost" data-cc="save">Salvar preferências</button>
+      <button type="button" class="cc-btn cc-btn-primary" data-cc="accept-all">Aceitar todos</button>
+    </div>
+    <p class="cc-status" role="status" aria-live="polite"></p>
+  </form>
+</dialog>
+
+<script is:inline>
+  (() => {
+    const KEY = "confianca-consentimento";
+    const VERSION = 1;
+    const banner = document.getElementById("cc-banner");
+    const modal = document.getElementById("cc-modal");
+    const status = modal.querySelector(".cc-status");
+    const boxes = { analytics: modal.querySelector("#cc-analytics"), marketing: modal.querySelector("#cc-marketing") };
+    let lastFocus = null;
+
+    const read = () => {
+      try {
+        const v = JSON.parse(localStorage.getItem(KEY) || "null");
+        return v && v.version === VERSION ? v : null;
+      } catch (e) { return null; }
+    };
+    const write = (c) => { try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} };
+
+    // Ativa apenas os scripts das categorias consentidas (declarados como type="text/plain")
+    const activate = (c) => {
+      document.querySelectorAll('script[type="text/plain"][data-consent]').forEach((el) => {
+        if (el.dataset.ccLoaded || !c[el.dataset.consent]) return;
+        const s = document.createElement("script");
+        for (const a of el.attributes) if (!["type", "data-src", "data-consent"].includes(a.name)) s.setAttribute(a.name, a.value);
+        if (el.dataset.src) s.src = el.dataset.src; else s.textContent = el.textContent;
+        el.dataset.ccLoaded = "1";
+        el.after(s);
+      });
+      window.dispatchEvent(new CustomEvent("confianca:consentimento", { detail: c }));
+    };
+
+    // Remove cookies de rastreamento conhecidos quando o consentimento é revogado
+    const clearCookies = (c) => {
+      const names = [];
+      if (!c.analytics) names.push(/^_ga/, /^_gid$/, /^_gat/, /^_clck$/, /^_clsk$/);
+      if (!c.marketing) names.push(/^_fbp$/, /^_fbc$/, /^_gcl_/, /^IDE$/);
+      const host = location.hostname.split(".");
+      document.cookie.split(";").forEach((ck) => {
+        const n = ck.split("=")[0].trim();
+        if (!names.some((r) => r.test(n))) return;
+        for (let i = 0; i < host.length - 1; i++) {
+          const d = host.slice(i).join(".");
+          document.cookie = `${n}=; Max-Age=0; path=/; domain=.${d}`;
+        }
+        document.cookie = `${n}=; Max-Age=0; path=/`;
+      });
+    };
+
+    const hideBanner = () => {
+      const hadFocus = banner.contains(document.activeElement);
+      banner.hidden = true;
+      document.documentElement.classList.remove("cc-open");
+      if (hadFocus) focusMain();
+    };
+    // quando o elemento que tinha o foco some, o foco vai para o conteúdo principal
+    const focusMain = () => {
+      const main = document.getElementById("conteudo");
+      if (!main) return;
+      if (!main.hasAttribute("tabindex")) main.setAttribute("tabindex", "-1");
+      main.focus({ preventScroll: true });
+    };
+    const showBanner = () => {
+      banner.hidden = false;
+      document.documentElement.classList.add("cc-open");
+      // o botão flutuante "Fale conosco" sobe para não ficar atrás do banner
+      document.documentElement.style.setProperty("--cc-h", banner.offsetHeight + 16 + "px");
+    };
+
+    const save = (choice) => {
+      const prev = read();
+      const c = { version: VERSION, essential: true, analytics: !!choice.analytics, marketing: !!choice.marketing, date: new Date().toISOString() };
+      write(c);
+      hideBanner();
+      clearCookies(c);
+      const revoked = prev && ((prev.analytics && !c.analytics) || (prev.marketing && !c.marketing));
+      // scripts já carregados não podem ser "descarregados": recarrega a página ao revogar
+      if (revoked && document.querySelector("script[data-cc-loaded]")) { location.reload(); return; }
+      activate(c);
+    };
+
+    const openModal = () => {
+      const c = read() || { analytics: false, marketing: false };
+      boxes.analytics.checked = !!c.analytics;
+      boxes.marketing.checked = !!c.marketing;
+      status.textContent = "";
+      lastFocus = document.activeElement;
+      modal.showModal();
+      boxes.analytics.focus();
+    };
+    const closeModal = () => {
+      if (modal.open) modal.close();
+    };
+    modal.addEventListener("close", () => {
+      if (lastFocus && document.contains(lastFocus) && !lastFocus.closest("[hidden]")) lastFocus.focus({ preventScroll: true });
+      else if (!banner.hidden) banner.querySelector("button").focus();
+      else focusMain();
+    });
+    // clique fora do painel fecha
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+
+    document.addEventListener("click", (e) => {
+      const t = e.target.closest("[data-cc], [data-cookie-prefs]");
+      if (!t) return;
+      if (t.hasAttribute("data-cookie-prefs")) { e.preventDefault(); openModal(); return; }
+      const act = t.dataset.cc;
+      if (act === "accept-all") { save({ analytics: true, marketing: true }); closeModal(); }
+      else if (act === "reject") save({ analytics: false, marketing: false });
+      else if (act === "manage") openModal();
+      else if (act === "save") { save({ analytics: boxes.analytics.checked, marketing: boxes.marketing.checked }); closeModal(); }
+      else if (act === "close") closeModal();
+    });
+
+    const current = read();
+    if (current) {
+      activate(current);
+      // também ativa scripts opcionais declarados depois deste componente
+      document.addEventListener("DOMContentLoaded", () => activate(read() || current));
+    } else showBanner();
+  })();
+</script>

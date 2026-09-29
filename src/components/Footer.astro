@@ -1,0 +1,64 @@
+---
+// Rodapé do site (compartilhado por todas as páginas)
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a href="/#topo" class="brand js-top" aria-label="Confiança — voltar ao topo">
+        <img src="/confianca-logo-negative.svg" alt="Confiança" width="168" height="30" loading="lazy" />
+      </a>
+      <p class="muted">Crédito e garantias sem burocracia.</p>
+    </div>
+    <div>
+      <p class="foot-title">Unidades</p>
+      <p class="muted">Limeira/SP<br />Goiânia/GO</p>
+    </div>
+    <div>
+      <p class="foot-title">Endereço</p>
+      <p class="muted">Rua R 88B, 73, Qd. F39, Lt. 01, Casa 01<br />Setor Sul, Goiânia/GO<br />CEP 74085-030</p>
+    </div>
+    <div>
+      <p class="foot-title">Navegue</p>
+      <ul class="muted foot-links">
+        <li><a href="/#solucoes">Soluções</a></li>
+        <li><a href="/#como-funciona">Como funciona</a></li>
+        <li><a href="/#duvidas">Dúvidas</a></li>
+        <li><a href="/#contato">Contato</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap legal">
+    <p>
+      CONFIANÇA SEGUROS E NEGÓCIOS IMOBILIÁRIOS LTDA · Confiança Crédito e Garantias.
+      <!-- TODO (cliente): CNPJ -->
+      Todas as soluções estão sujeitas à análise de crédito e às condições de cada contrato.
+      Prazos informados são estimativas.
+    </p>
+    <div class="legal-bottom">
+      <p>© 2026 Confiança. Todos os direitos reservados.</p>
+      <ul class="legal-links">
+        <li><a href="/politica-de-privacidade">Política de Privacidade e Cookies</a></li>
+        <li><button type="button" class="link-btn" data-cookie-prefs aria-haspopup="dialog">Preferências de Cookies</button></li>
+      </ul>
+      <a class="credit" href="https://oxycom.tech" target="_blank" rel="noopener" aria-label="Desenvolvido por Oxycom (abre em nova aba)">
+        <span>Desenvolvido por</span>
+        <img src="/oxycom-logo.svg" alt="Oxycom" width="72" height="20" loading="lazy" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  // Logo: na página inicial sobe ao topo com rolagem suave (instantânea com "reduzir movimento");
+  // nas demais páginas segue o link para a página inicial.
+  document.querySelectorAll(".js-top").forEach((a) =>
+    a.addEventListener("click", (e) => {
+      if (!document.getElementById("topo")) return;
+      e.preventDefault();
+      const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+      scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+      history.replaceState(null, "", location.pathname + location.search);
+    })
+  );
+</script>
