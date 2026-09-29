@@ -1034,9 +1034,9 @@ p { text-wrap: pretty; }
 .how > .wrap { position: relative; z-index: 1; }
 .how-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .hl-orb { position: absolute; border-radius: 50%; filter: blur(40px); }
-.o1 { width: 520px; height: 520px; left: -8%; top: -18%; background: radial-gradient(circle, rgba(0, 238, 159, 0.38), rgba(0, 238, 159, 0) 65%); }
-.o2 { width: 620px; height: 620px; right: -12%; top: 10%; background: radial-gradient(circle, rgba(76, 110, 245, 0.42), rgba(76, 110, 245, 0) 65%); }
-.o3 { width: 440px; height: 440px; left: 38%; bottom: -30%; background: radial-gradient(circle, rgba(0, 238, 159, 0.3), rgba(0, 238, 159, 0) 65%); }
+.o1 { width: 520px; height: 520px; left: -8%; top: -18%; background: radial-gradient(circle, rgba(0, 238, 159, 0.19), rgba(0, 238, 159, 0) 65%); }
+.o2 { width: 620px; height: 620px; right: -12%; top: 10%; background: radial-gradient(circle, rgba(76, 110, 245, 0.21), rgba(76, 110, 245, 0) 65%); }
+.o3 { width: 440px; height: 440px; left: 38%; bottom: -30%; background: radial-gradient(circle, rgba(0, 238, 159, 0.15), rgba(0, 238, 159, 0) 65%); }
 /* grade de pontos sutil, esmaecida nas bordas */
 .hl-grid {
   position: absolute; inset: 0;
