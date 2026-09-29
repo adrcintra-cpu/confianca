@@ -1026,3 +1026,49 @@ p { text-wrap: pretty; }
 .credit img { height: 20px; width: auto; opacity: 0.75; transition: opacity 0.3s; }
 .credit:hover { color: var(--ink); }
 .credit:hover img, .credit:focus-visible img { opacity: 1; }
+
+/* ==========================================================================
+   Como funciona — luzes e movimento no fundo
+   ========================================================================== */
+.how { position: relative; isolation: isolate; overflow: clip; }
+.how > .wrap { position: relative; z-index: 1; }
+.how-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hl-orb { position: absolute; border-radius: 50%; filter: blur(40px); }
+.o1 { width: 520px; height: 520px; left: -8%; top: -18%; background: radial-gradient(circle, rgba(0, 238, 159, 0.38), rgba(0, 238, 159, 0) 65%); }
+.o2 { width: 620px; height: 620px; right: -12%; top: 10%; background: radial-gradient(circle, rgba(76, 110, 245, 0.42), rgba(76, 110, 245, 0) 65%); }
+.o3 { width: 440px; height: 440px; left: 38%; bottom: -30%; background: radial-gradient(circle, rgba(0, 238, 159, 0.3), rgba(0, 238, 159, 0) 65%); }
+/* grade de pontos sutil, esmaecida nas bordas */
+.hl-grid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(142, 163, 216, 0.22) 1px, transparent 1.2px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 50%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(70% 70% at 50% 50%, #000 0%, transparent 75%);
+  opacity: 0.5;
+}
+/* feixe de luz que percorre a linha das etapas */
+.steps { position: relative; }
+.steps::before {
+  content: ""; position: absolute; top: -1px; left: 0; width: 22%; height: 2px; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(0, 238, 159, 0), var(--green) 60%, rgba(255, 255, 255, 0.9) 100%);
+  box-shadow: 0 0 18px 2px rgba(0, 238, 159, 0.55);
+  border-radius: 2px; opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .o1 { animation: how-drift-a 16s ease-in-out infinite alternate; }
+  .o2 { animation: how-drift-b 20s ease-in-out infinite alternate; }
+  .o3 { animation: how-drift-c 18s ease-in-out infinite alternate; }
+  @keyframes how-drift-a { to { translate: 260px 120px; scale: 1.2; } }
+  @keyframes how-drift-b { to { translate: -320px 80px; scale: 0.85; } }
+  @keyframes how-drift-c { to { translate: 180px -160px; scale: 1.25; } }
+  .hl-grid { animation: how-grid 24s linear infinite; }
+  @keyframes how-grid { to { background-position: 28px 56px; } }
+  .steps::before { animation: how-beam 4.8s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+  @keyframes how-beam {
+    0% { left: -22%; opacity: 0; }
+    12% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+}
+@media (max-width: 860px) { .steps::before { display: none; } }
