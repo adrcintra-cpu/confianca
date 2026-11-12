@@ -394,12 +394,71 @@ p { text-wrap: pretty; }
 }
 
 /* Públicos */
-.audiences { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); border-top: 1px solid var(--line-light); }
-.audience { padding: 32px 28px 36px 0; border-bottom: 1px solid var(--line-light); }
+.audiences {
+  display: grid; gap: clamp(14px, 1.6vw, 20px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+.audience {
+  display: flex; flex-direction: column; align-items: flex-start;
+  padding: 30px 26px 26px; border-radius: var(--radius); overflow: hidden; isolation: isolate;
+  background: #fff; border: 1px solid var(--line-light);
+  box-shadow: 0 18px 40px -32px rgba(33, 43, 70, 0.45);
+}
+/* brilho verde que nasce do canto ao passar o mouse */
+.audience::after {
+  content: ""; position: absolute; z-index: -1; inset: auto -30% -60% auto; width: 90%; aspect-ratio: 1;
+  border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 238, 159, 0.28), transparent);
+  opacity: 0; scale: 0.6; transition: opacity 0.6s, scale 0.9s var(--ease);
+}
+.aud-icon {
+  display: grid; place-items: center; width: 58px; height: 58px; margin-bottom: 22px;
+  border-radius: 16px; background: var(--navy); color: var(--green);
+  transition: background-color 0.4s, color 0.4s, transform 0.5s var(--ease);
+}
 .audience h3 { font-size: 1.3rem; margin-bottom: 12px; }
-.audience p { color: var(--text-dim); font-size: 0.97rem; max-width: 28ch; }
-@media (min-width: 1000px) {
-  .audience + .audience { padding-left: 28px; border-left: 1px solid var(--line-light); }
+.audience p { color: var(--text-dim); font-size: 0.97rem; max-width: 30ch; transition: color 0.35s; }
+.aud-tag {
+  margin-top: auto; padding-top: 22px; display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #067a55;
+  transition: color 0.35s;
+}
+.aud-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(0, 238, 159, 0.6); }
+
+@media (hover: hover) and (pointer: fine) {
+  .audience:hover { transform: translateY(-10px); background: var(--navy); border-color: var(--navy); box-shadow: 0 34px 60px -30px rgba(33, 43, 70, 0.7); }
+  .audience:hover::after { opacity: 1; scale: 1; }
+  .audience:hover .aud-icon { background: var(--green); color: var(--navy); transform: translateY(-2px) scale(1.06); }
+  .audience:hover p { color: var(--ink-dim); }
+  .audience:hover .aud-tag { color: var(--green); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .aud-tag::before { animation: aud-pulse 2.4s var(--ease) infinite; animation-delay: calc(var(--i) * 0.4s); }
+  @keyframes aud-pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 238, 159, 0.6); } 70%, 100% { box-shadow: 0 0 0 9px rgba(0, 238, 159, 0); } }
+  .audience:hover .aud-icon svg { animation: aud-bob 1.6s ease-in-out infinite; }
+  @keyframes aud-bob { 50% { translate: 0 -2px; } }
+
+  @supports (animation-timeline: view()) {
+    /* entrada em cascata: cada card sobe, gira levemente e desfoca → foca */
+    .audience {
+      animation: aud-in linear both; animation-timeline: view();
+      animation-range: entry calc(var(--i) * 9%) cover calc(30% + var(--i) * 6%);
+    }
+    @keyframes aud-in { from { opacity: 0; translate: 0 70px; scale: 0.92; rotate: -2deg; filter: blur(6px); } }
+    /* barra verde do topo cresce na entrada */
+    .audience::before { animation: aud-bar linear both; animation-timeline: view(); animation-range: cover 15% cover 45%; }
+    @keyframes aud-bar { from { width: 0; } to { width: 34%; } }
+    /* ícone se desenha traço a traço */
+    .aud-icon svg > * { stroke-dasharray: 1; animation: aud-draw linear both; animation-timeline: view(); animation-range: entry 40% cover 40%; }
+    @keyframes aud-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    .aud-icon { animation: aud-pop linear both; animation-timeline: view(); animation-range: entry 30% cover 35%; }
+    @keyframes aud-pop { from { scale: 0.4; rotate: -12deg; opacity: 0; } 70% { scale: 1.08; } to { scale: 1; rotate: 0deg; opacity: 1; } }
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .audience:hover::before { animation: none; width: 100%; }
+  }
 }
 
 .partner {
@@ -678,6 +737,7 @@ p { text-wrap: pretty; }
   background: var(--green); transition: width 0.6s var(--ease);
 }
 .fact { position: relative; }
+.audience::before { height: 3px; top: 0; z-index: 1; }
 .faq details { transition: background-color 0.35s; }
 
 @media (hover: hover) and (pointer: fine) {
@@ -695,7 +755,7 @@ p { text-wrap: pretty; }
   .layer:hover .layer-n { transform: scale(1.12); box-shadow: 0 0 0 6px rgba(0, 238, 159, 0.18); }
 
   .audience:hover::before { width: 100%; }
-  .audience:hover h3 { color: #067a55; transform: translateX(4px); }
+  .audience:hover h3 { color: var(--green); transform: translateX(4px); }
 
   .partner:hover { box-shadow: 0 30px 60px -30px rgba(33, 43, 70, 0.6); }
   .tier:hover { transform: translateY(-8px); filter: brightness(1.08); }
