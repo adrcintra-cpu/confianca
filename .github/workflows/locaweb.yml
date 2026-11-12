@@ -21,6 +21,8 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FTP_HOST: ${{ secrets.LOCAWEB_FTP_HOST }}
     steps:
       - uses: actions/checkout@v4
 
@@ -41,8 +43,6 @@ jobs:
 
       - name: Enviar via FTP
         if: ${{ env.FTP_HOST != '' }}
-        env:
-          FTP_HOST: ${{ secrets.LOCAWEB_FTP_HOST }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.LOCAWEB_FTP_HOST }}
