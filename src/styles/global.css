@@ -146,7 +146,8 @@ p { text-wrap: pretty; }
 .chapter-text { position: relative; }
 .chapter-text { z-index: 1; }
 .chapter-text > * { max-width: min(34rem, 40vw); }
-.chapter h1, .chapter-title { font-size: clamp(2.2rem, 4.2vw, 4.4rem); font-weight: 500; }
+.chapter h1, .chapter-title { font-size: clamp(2rem, min(3.6vw, 6.4svh), 4rem); font-weight: 500; line-height: 1.08; }
+.chapter-text > .chapter-title, .chapter-text > h1 { max-width: min(40rem, 46vw); }
 .chapter .lead { font-size: clamp(1rem, 1.25vw, 1.15rem); }
 .seq-progress { display: none; }
 
