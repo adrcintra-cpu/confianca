@@ -1,0 +1,53 @@
+# Build do site e publicação na Locaweb (FTP).
+#
+# Roda a cada push na main e também manualmente (aba Actions → "Publicar na Locaweb" → Run workflow).
+# Configure em GitHub → Settings → Secrets and variables → Actions:
+#   LOCAWEB_FTP_HOST      ex.: ftp.seudominio.com.br   (painel Locaweb → Hospedagem → FTP)
+#   LOCAWEB_FTP_USER      usuário FTP
+#   LOCAWEB_FTP_PASSWORD  senha FTP
+#   LOCAWEB_FTP_DIR       opcional, pasta remota (padrão: /public_html/)
+# Sem os secrets, o workflow só gera o build e deixa um .zip para baixar (artefato "site-locaweb").
+name: Publicar na Locaweb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: locaweb
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Guardar build para download
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-locaweb
+          path: dist/
+          include-hidden-files: true
+
+      - name: Enviar via FTP
+        if: ${{ env.FTP_HOST != '' }}
+        env:
+          FTP_HOST: ${{ secrets.LOCAWEB_FTP_HOST }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.LOCAWEB_FTP_HOST }}
+          username: ${{ secrets.LOCAWEB_FTP_USER }}
+          password: ${{ secrets.LOCAWEB_FTP_PASSWORD }}
+          server-dir: ${{ secrets.LOCAWEB_FTP_DIR || '/public_html/' }}
+          local-dir: ./dist/
+          protocol: ftp
